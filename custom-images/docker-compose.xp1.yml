@@ -11,13 +11,13 @@ services:
       - "--entryPoints.websecure.address=:443"
       - "--entryPoints.websecure.forwardedHeaders.insecure"
     ports:
-      - "443:443"
-      - "8079:8080"
+      - "${HTTPS_PORT}:443"
+      - "${TRAEFIK_MANAGEMENT_PORT}:8080"
     healthcheck:
       test: ["CMD", "traefik", "healthcheck", "--ping"]
     volumes:
-      - source: \\.\pipe\docker_engine
-        target: \\.\pipe\docker_engine
+      - source: \\.\pipe\docker_engine\
+        target: \\.\pipe\docker_engine\
         type: npipe
       - ./traefik:C:/etc/traefik
     depends_on:
@@ -37,7 +37,7 @@ services:
       SA_PASSWORD: ${SQL_SA_PASSWORD}
       ACCEPT_EULA: "Y"
     ports:
-      - "14330:1433"
+      - "${MSSQL_PORT}:1433"
     volumes:
       - type: bind
         source: .\mssql-data
@@ -62,7 +62,7 @@ services:
     isolation: ${ISOLATION}
     image: ${SITECORE_DOCKER_REGISTRY}nonproduction/solr:8.8.2-${SITECORE_VERSION}
     ports:
-      - "8984:8983"
+      - "${SOLR_PORT}:8983"
     volumes:
       - type: bind
         source: .\solr-data
@@ -144,6 +144,8 @@ services:
       - "traefik.http.routers.cd-secure.entrypoints=websecure"
       - "traefik.http.routers.cd-secure.rule=Host(`${CD_HOST}`)"
       - "traefik.http.routers.cd-secure.tls=true"
+      - "traefik.http.middlewares.stripForwardedHostHeader.headers.customrequestheaders.X-Forwarded-Host="
+      - "traefik.http.routers.cd-secure.middlewares=stripForwardedHostHeader"
   cm:
     isolation: ${ISOLATION}
     image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp1-cm:${SITECORE_VERSION}
@@ -206,7 +208,8 @@ services:
       - "traefik.http.routers.cm-secure.entrypoints=websecure"
       - "traefik.http.routers.cm-secure.rule=Host(`${CM_HOST}`)"
       - "traefik.http.routers.cm-secure.tls=true"
-      - "traefik.http.routers.cm-secure.middlewares=force-STS-Header"
+      - "traefik.http.routers.cm-secure.middlewares=force-STS-Header, stripForwardedHostHeader"
+      - "traefik.http.middlewares.stripForwardedHostHeader.headers.customrequestheaders.X-Forwarded-Host="
   prc:
     isolation: ${ISOLATION}
     image: ${SITECORE_DOCKER_REGISTRY}sitecore-xp1-prc:${SITECORE_VERSION}
