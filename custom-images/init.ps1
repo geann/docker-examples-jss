@@ -71,6 +71,12 @@ Set-EnvFileVariable "ID_HOST" -Value "id.$($HostName).localhost"
 # HRZ_HOST
 Set-EnvFileVariable "HRZ_HOST" -Value "hrz.$($HostName).localhost"
 
+# RENDERING_HOST
+Set-EnvFileVariable "RENDERING_HOST" -Value "rh.$($HostName).localhost"
+
+# PROXY_HOST
+Set-EnvFileVariable "PROXY_HOST" -Value "www.$($HostName).localhost"
+
 # REPORTING_API_KEY = random 64-128 chars
 Set-EnvFileVariable "REPORTING_API_KEY" -Value (Get-SitecoreRandomString 64 -DisallowSpecial)
 
@@ -132,5 +138,7 @@ Add-HostsEntry "cd.$($HostName).localhost"
 Add-HostsEntry "cm.$($HostName).localhost"
 Add-HostsEntry "id.$($HostName).localhost"
 Add-HostsEntry "hrz.$($HostName).localhost"
+Add-HostsEntry "rh.$($HostName).localhost"
+Add-HostsEntry "www.$($HostName).localhost"
 
 Write-Host "Done!" -ForegroundColor Green
