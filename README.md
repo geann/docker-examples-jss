@@ -1,6 +1,6 @@
-# Sitecore Docker Examples
+# Sitecore Docker Examples for JSS
 
-This repository contains companion code for the [Sitecore Containers documentation](https://containers.doc.sitecore.com/). Together, these are meant to help you get started using [Docker](https://www.docker.com/) containers with Sitecore.
+This repository is a fork of https://github.com/Sitecore/docker-examples. It includes additional modules and configuration files for running Sitecore JSS for React using Docker containers.
 
 Briefly, here's what you'll find in this repo:
 
