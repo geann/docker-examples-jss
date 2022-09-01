@@ -2,6 +2,11 @@
 
 This repository is a fork of https://github.com/Sitecore/docker-examples. It includes additional modules and configuration files for running Sitecore JSS for React using Docker containers (see `custom-images`).
 
+Summary of changes:
+* Additional container for the Rendering Host (see `custom-images/docker-compose.yml` and `custom-images/docker-compose.override.yml`)
+* Additional container for the SSR proxy to support Experience Editor (see `custom-images/docker-compose.yml` and `custom-images/docker-compose.override.yml`)
+* New variables in `.env` file
+
 Briefly, here's what you'll find in this repo:
 
 * Example for running an out of the box Sitecore instance (see `getting-started`).
