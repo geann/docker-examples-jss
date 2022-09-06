@@ -4,6 +4,8 @@ This repository is a fork of https://github.com/Sitecore/docker-examples. It inc
 
 Summary of changes:
 * Headless services module is included into CM and CD images
+* Custom 'nanoserver' image is added for NodeJS roles. This was required because JSS app for React uses an npm package called "open" and the package contains a hardcoded path to Powershell exe which does not exist in Nanoserver. The standard Microsoft Nanoserver is extended with Powershell package copied to `C:\Windows\System32\WindowsPowerShell\v1.0`.
+Note: Sitecore roles use the standard Nanoserver directly from Microsoft repository.
 * Additional container for the Rendering Host to support Experience Editor (see `custom-images/docker-compose.yml` and `custom-images/docker-compose.override.yml`)
 * Additional container for the SSR proxy in connected mode  for the front-end requests (see `custom-images/docker-compose.yml` and `custom-images/docker-compose.override.yml`)
 * New variables in `.env` file
