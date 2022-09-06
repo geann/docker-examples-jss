@@ -9,6 +9,11 @@ Note: Sitecore roles use the standard Nanoserver directly from Microsoft reposit
 * Additional container for the Rendering Host to support Experience Editor (see `custom-images/docker-compose.yml` and `custom-images/docker-compose.override.yml`)
 * Additional container for the SSR proxy in connected mode  for the front-end requests (see `custom-images/docker-compose.yml` and `custom-images/docker-compose.override.yml`)
 * New variables in `.env` file
+* Ngrok support:
+    * The custom Nanoserver image includes `/Windows/System32/NetApi32.dll` to support Ngrok
+    * Ngrok-related code can be uncommented in `\scripts\http-renderer.js`, it is disabled by default for two reasons:
+        * it requires an account and authentication key from this account to be installed within container before it can run
+        * it generates a different domain each time container starts and it's not very helpful for the Experience Editor scenario because CM needs to know this domain in advance
 
 Briefly, here's what you'll find in this repo:
 
