@@ -14,12 +14,3 @@ Note: Sitecore roles use the standard Nanoserver directly from Microsoft reposit
     * Ngrok-related code can be uncommented in `\scripts\http-renderer.js`, it is disabled by default for two reasons:
         * it requires an account and authentication key from this account to be installed within container before it can run
         * it generates a different domain each time container starts and it's not very helpful for the Experience Editor scenario because CM needs to know this domain in advance
-
-Briefly, here's what you'll find in this repo:
-
-* Example for running an out of the box Sitecore instance (see `getting-started`).
-* Example solution for creating custom Sitecore images, with recommended folder structure for container development (see `custom-images`).
-* Sample PowerShell scripts for container-based Sitecore instance preparation (`init.ps1`) and cleanup (`clean.ps1`).
-* Docker compose files for building Sitecore instances in various topologies (see `custom-images`).
-
-Please refer to the [Sitecore Containers documentation](https://containers.doc.sitecore.com/) for complete details, including running the examples and recommended usage.
